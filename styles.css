@@ -1,0 +1,379 @@
+
+body{
+  background-image: url('IMG_1546.jpg');
+  background-position:  100%
+  background-repeat: no-repeat;
+
+  background-color: Gainsboro; /*rgb(225, 225, 225);*/
+  
+  
+}
+
+{
+  box-sizing: border-box;
+}
+/*#empTable
+thead,
+tbody {
+  display: block;
+}*/
+
+thead {
+  text-align: left;
+  background-color: rgb(100,150,100);
+  opacity: 1;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);)
+}
+
+#empTable tbody {
+  background: rgb(220, 220, 220);
+  overflow-y: scroll;
+  height: 300px;
+}
+
+#empTable thead th,
+#empTable tbody td {
+  width: 100px;
+  minimum-width: 100px;
+  maximum-width: 100px;
+  padding:2px;
+
+}
+
+
+#empTable thead tr th:first-child,
+tbody tr td:first-child {
+ 
+  width: 200px;
+  minimum-width: 200px;
+  maximum-width: 200px;
+ 
+  font-weight: normal;
+}
+
+
+#myInput {
+  
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#empTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);)
+}
+
+#empTable th, #empTable td {
+  
+  text-align: left;
+  padding: 2px;
+ 
+}
+
+#empTable th, {
+  text-align: left;
+  padding: 2px;
+  background-color: rgb(150,200,120);
+}
+
+
+#empTable tr.header, #empTable tr:hover {
+  /*background-color: #f0f0f0;*/
+}
+
+#empTable th:first-child,
+tr td:first-child {
+  width: 200px;
+  
+  word-break: break-all;
+}
+
+th.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  background-color: rgb(100,150,100);
+  border: 1px solid black;
+}
+
+th.sticky2{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 7;
+  background-color: rgb(100,150,100);
+  border: 1px solid black;
+}
+
+
+td.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  left: 0;
+  /*background-color: rgb(100,150,100);*/
+  border: 1px solid black;
+}
+
+td.sticky1 {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  left: 1;
+  /*background-color: rgb(100,150,100);*/
+  border: 1px solid black;
+}
+
+
+/* Zebra stripe */
+      #BlockTable tbody tr:nth-child(odd) {
+        background: lightblue;
+        /*opacity: 0.8;*/
+ 
+      }
+
+      /* Zebra stripe */
+      #BlockTable tr:nth-child(even) {
+        background: rgb(150,200,120);
+        /*opacity: .8;*/
+      }
+
+#BlockTable th{
+  opacity: 1;
+  width: 100%
+}
+
+      #blockcont{
+        height: 210px;
+        width: auto;
+        overflow-y: auto;
+        overflow-x: auto;
+        white-space: nowrap;
+        /*background-image: linear-gradient(rgba(0,0,0,0.2), white, rgba(0,0,0,0.2));*/
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);)
+       
+      }
+
+
+input, textarea{
+height: 40px;
+width: 5%
+word-wrap: auto;
+padding: 2px 2px;
+margin: 2px 2px;
+box-sizing: border-box;
+}
+
+textarea {
+
+display: block;
+
+}
+
+#DeleteSel {
+    width: 75px;  height: 20px; border-radius: 12px;
+}
+
+input[type="checkbox"]{
+height: 30px;
+width: 30px;
+float: center;
+
+
+}
+
+input, label{
+display:block;
+
+}
+
+
+#RK {display:block}
+
+input{
+box-shadow: inset 10 10 10px grey;
+}
+
+button {
+  //background-color: #4CAF50; /* Green */
+  border: 1px solid black;
+  color: black;
+  padding: 12px 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 12px;
+  box-shadow: inset 0 0 10px grey;
+}
+
+.inputbutton {
+  //background-color: #4CAF50; /* Green */
+  border: 1px solid black;
+  color: black;
+  padding: 12px 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  border-radius: 12px;
+  font-size: 12px;
+  box-shadow: inset 0 0 10px grey;
+}
+
+input[type="radio"]{
+height: 40px;
+width: 40px;
+}
+
+fieldset{
+width:100%;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);)
+}
+
+select {
+size: 3;
+height: 40px;
+width: fit-content();
+padding: 2px;
+margin: 2px 0;
+box-sizing: border-box;
+}
+
+#Date{
+size: 3;
+height: 40px;
+width: fit-content();
+text-align: left;
+padding: 2px 2px;
+margin: 2px 2px;
+box-sizing: border-box;
+background-color: white;
+border: 1px solid black;
+}
+
+input[type="date"] { 
+     vertical-align: middle;
+}
+
+#cont{
+height: 400px;
+width: auto;
+overflow-y: auto;
+overflow-x: auto;
+white-space: nowrap;
+padding: 5px 5px;
+margin: 2px 2px;
+box-sizing: border-box;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);)
+}
+
+.label{
+height: auto;
+width: auto;
+//overflow: auto;
+overflow-x: auto;
+white-space: nowrap;
+padding: 5px 5px;
+margin: 5px 5 px;
+box-sizing: border-box;
+
+}
+
+input:read-only{
+  background-color: rgb(220,220,220);
+}
+
+#Start, #End{
+  background-color: white;
+  border: 1px solid black;
+}
+
+#lblCheck2{
+display: inline;
+font-size: 0.7em;
+}
+
+<!--
+table{
+height: fit-contents;
+width: 100%
+overflow: auto;
+overflow-x: auto;
+white-space: nowrap;
+padding: 2px;
+margin: 2px 0;
+box-sizing: border-box;
+}
+
+-->
+
+.newspaper {
+  width: 5%;
+  column-rule-style: solid;
+  column-rule-color: black;
+  column-rule-width: 1px;
+  column-count: 23;
+}
+
+.full {
+  height: 40px;
+  width: 100px;
+  word-wrap: auto;
+  padding: 2px;
+  margin: 2px 0;
+  box-sizing: border-box;
+}
+
+
+table, th, td {
+  width: 60px;
+  /*minimum-width: 60px;*/
+  /*maximum-width: 60px;*/
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tablinks button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tablinks button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tablinks button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}

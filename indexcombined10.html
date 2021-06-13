@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<head>
+
+<title>Silvifor Timesheet 2021</title>
+
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Timesheet')">Timesheet</button>
+  <button class="tablinks" onclick="openTab(event, 'Ops Records')">Ops Records</button>
+</div>
+
+<!-- Tab content -->
+<div id="Timesheet" class="tabcontent">
+
+
+<!--
+<script src="localforage/dist/localforage.js"></script>
+<script>localforage.getItem('something', myCallback);</script>
+-->
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="xr5ciml86zk7q9p"></script>
+
+<script src="dist/the-datepicker.min.js"></script>
+
+<link rel="stylesheet" href="dist/the-datepicker.css">
+
+<script type="text/javascript" src="index.js"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+
+
+<script type="text/javascript" src="papaparse.min.js"></script>
+<!--
+<script type="text/javascript" src="localforage.min.js"></script>
+
+<script src="tasks.js"></script>
+
+<script src="employees.js"></script>
+
+<script src="clients.js"></script>
+
+<script src= "leads.js"></script>
+
+<script src="requestkeys.js"></script>
+
+-->
+<script type="text/javascript" src="scripts.js"></script>
+
+
+
+
+
+
+<script>
+
+
+</script>
+
+<script type="text/javascript">
+    
+</script>
+
+
+</head>
+
+<h2>Silvifor Timesheet 2021</h2>
+<!--
+<a href="#" id="open" >Open in safari</a>
+-->
+<fieldset >
+<legend>Browse for Files</legend>
+
+<div style="float:left">
+<label for="checkHide">Click to show/hide</label>
+<input type='checkbox' id= 'checkHide' onclick='hideThis()'></input>
+</div>
+
+<div id='divFiles' style= 'float:left'>
+<div class="label" style="float:left">
+<label for="SelectLead">Select Leads</label>
+<input type='file' accept='text/plain' id= 'SelectLead' onchange='openLeadFile(event)'></input>
+</div>
+
+<div class="label" style="float:left">
+<label for="SelectClient">Select Clients</label>
+<input type='file' accept='text/plain' id= 'SelectClient' onchange='openClientFile(event)'></input>
+</div>
+
+<div class="label" style="float:left">
+<label for="SelectBlock">Select Blocks</label>
+<input type='file' accept='text/plain' id= 'SelectBlock' onchange='openFile(event)'></input>
+</div>
+
+<div class="label" style="float:left">
+<label for="SelectTask">Select Tasks</label>
+<input type='file' accept='text/plain' id= 'SelectTask' onchange='openTaskFile(event)'></input>
+<!-- from original with image display
+<br>
+<img id='output'>
+-->
+</div>
+
+<div class="label" style="float:left">
+<label for="SelectName">Select Names</label>
+<input type='file' accept='text/plain' id= 'SelectName' onchange='openNameFile(event)'></input>
+</div>
+
+<div class="label" style="float:left">
+<label for="SelectRK">Select RKs</label>
+<input type='file' accept='text/plain' id= 'SelectRK' onchange='openRKFile(event)'></input>
+</div>
+</div>
+
+
+</fieldset>
+
+
+<!--
+<body>
+-->
+
+
+
+<!--
+<p>Fill in form fields</p>
+-->
+<!--
+<form method="post" action="mailto:youremail@youremail.com" >
+-->
+<fieldset>
+<legend>Enter Crew Lead and Pay Period</legend>
+
+<div class="label" style="float:left;">
+<label for="Lead">Crew Lead</label>
+<select type="text" id="Lead" value= " " size="12" onchange = "addtocrew()">
+
+</select>
+
+</div>
+
+<div class="label" style="float:left;" onclick= "getenddate()">
+<label for="Start">Pay Period Start</label>
+<input type="text" id="Start" readonly= true onclick= "getenddate()"></input>
+</div>
+
+
+<div class="label" style="float:left;" onclick= "getstartdate()">
+
+<label for="End">Pay Period End</label>
+<input type="text" id="End" readonly= true onclick= "getstartdate()">
+</input>
+</div>
+
+<div class="label" style="float:left;">
+<label for="SaveLead" style= "visibility:hidden" >Save Lead</label>
+<button id= "SaveLead" style= "background-color: rgb(200,255,200)" onclick="savelead()">Save Lead
+</button>
+</div>
+
+
+<div class="label" style="float:left;">
+<label for="ClearLead" style= "visibility:hidden" >Clear Lead</label>
+<button id= "ClearLead" style= "background-color: rgb(255,200,200)" onclick="clearlead()")>Clear Lead
+</button>
+</div>
+
+ <br style="clear:both;">
+
+</fieldset>
+
+
+<fieldset id="Daily">
+
+
+<legend>Enter Daily Data</legend>
+
+<div class="label" style="float:left;">
+<label for="Date">Date</label>
+<input type="text" id="Date" readonly= true ></input>
+</div>
+
+
+<div class="label" style="float:left;">
+<label for="Trucks"># of Trucks</label>
+<input type="number" id="Trucks" size="6"/>
+</div>
+
+<div class="label"style="float:left;">
+<label for="KmS">Start Km</label>
+<input type="number" id="KmS" onblur= "calculateKm()" />
+</div>
+
+<div class="label" style="float:left;">
+<label for="KmE">End Km</label>
+<input type="number" id="KmE" size="12" onblur= "calculateKm()" />
+</div>
+
+<div class="label" style="float:left;">
+<label for="KmD">Daily Km</label>
+<input type="number" id="KmD" size="6"/>
+</div>
+
+
+<br style="clear:both;">
+
+<div class="label" style="float:left;">
+<label for= "Csearch">Search/Add Client</label>
+<input type="text" id="Csearch" name="Csearch" style="margin: 1px; width: 165px;" onchange="addClients()" placeholder="filter client list.." >
+</div>
+
+<div class="label" style="float:left;">
+<label for="Client">Client</label>
+<select type="text" id="Client" value= " ">
+</select>
+</div>
+
+
+
+
+
+
+<br style="clear:both;">
+
+<div id="blockcont" style="float:left;">
+
+
+<table id="BlockTable">
+</table>
+
+</div>
+
+<br style="clear:both;">
+
+<div class="label" style="float:left;">
+<label for= "Tsearch">Search/Add Task</label>
+<input type="text" id="Tsearch" name="Tsearch" style="margin: 1px; width: 165px;" onchange="addtasks()" placeholder="filter task list.." >
+</div>
+
+<div class="label" style="float:left;">
+<label for="Task">Task</label>
+<select type="text" id="Task" value= " "  onchange="proArray()" >
+</select>
+
+</div>
+
+<div class="label" style="float:left;">
+<div class="label" style="float:left;">
+<div class="label" style="float:left;">
+<label for="Hourly">Hourly</label>
+<input type="radio" id="Hourly" name="PayType" checked= "true" value= "Hourly" onclick="proArray()"/>
+</div>
+
+<div class="label" style="float:left;">
+<label for="PieceRate">Piece Rate</label>
+<input type="radio" id="PieceRate" name="PayType" onclick="proArray()" value= "PieceRate"/>
+</div>
+</div>
+
+<div class="label" style="float:left;">
+<div class="label" style="float:left;">
+<label for="Coop">Co-op</label>
+<input type="radio" id="Coop" name="PayType1" checked= "true" value= "Coop"/>
+</div>
+
+<div class="label" style="float:left;">
+<label for="Individual">Individual</label>
+<input type="radio" id="Individual" name="PayType1" value= "Individual"/>
+</div>
+</div>
+</div>
+
+
+
+<br style="clear:both;">
+
+<div class="label" style="float:left;">
+<label for= "Nsearch">Search/Add Name</label>
+<input type="text" id="Nsearch" name="Nsearch" style="margin: 1px; width: 165px;" onchange="addnames()" placeholder="filter name list.." >
+</div>
+
+<div class="label" style="float:left;">
+<label for="Name">Name</label>
+
+<select type="text" id="Name" value= " " onchange="proArray()" multiple>
+</select>
+
+</div>
+
+<div class="label" style="float:left;">
+<label for="Hours">Hours</label>
+<input type="number" id="Hours" /> 
+</div>
+
+<div class="label" style="float:left;">
+<label for="OT1">OT1</label>
+<input type="number" id="OT1" value= "" />
+</div>
+
+<div class="label" style="float:left;">
+<label for="OT2">OT2</label>
+<input type="number" id="OT2" value= ""/>
+</div>
+
+<br style="clear:both;">
+
+<span id="CrewList"></span>
+
+<br style="clear:both;">
+
+<div class="label">
+<label for="Comments">Comments</label>
+<input type="text" id="Comments" value= " " size="100%" />
+</div>
+
+<div class="label" style="float:left;">
+<label for="SaveTask" style= "visibility:hidden" >Save Client/Task</label>
+<button id= "SaveTask" style= "background-color: rgb(200,255,200)" onclick="savetask()">Save Client/Task
+</button>
+</div>
+
+<script>
+
+</script>
+<!--
+<div class="label" style="float:left;">
+<label for="SaveCrew">Save Crew</label>
+<button id= "SaveCrew" style= "background-color: lime" onclick="saveCrew()">Save Crew
+</button>
+</div>
+
+<script>
+function saveCrew(){
+
+localStorage.removeItem("myCrew")
+
+}
+</script>
+-->
+<div class="label" style="float:left;">
+<label for="ClearTask" style= "visibility:hidden" >Clear Client/Task</label>
+<button id= "ClearTask" style= "background-color: rgb(255,200,200)" onclick="cleartask()")>Clear Client/Task
+</button>
+</div>
+
+<div class="label" style="float:left;">
+<label for="SaveCrew" style= "visibility:hidden" >Save Crew</label>
+<button id= "SaveCrew" style= "background-color: rgb(200,255,200)" onclick="saveCrew()">Save Crew
+</button>
+</div>
+
+<div class="label" style="float:left;">
+<label for="ClearCrew" style= "visibility:hidden" >Clear Crew</label>
+<button id= "ClearCrew" style= "background-color: rgb(255,200,200)" onclick="clearCrew()")>Clear Crew
+</button>
+</div>
+
+<div class="label" style="float:left;">
+<label for="SaveBlock" style= "visibility:hidden" >Save Block</label>
+<button id= "SaveBlock" style= "background-color: rgb(200,255,200)" onclick="saveBlock()">Save Block
+</button>
+</div>
+
+<div class="label" style="float:left;">
+<label for="ClearBlock" style= "visibility:hidden" >Clear Block</label>
+<button id= "ClearBlock" style= "background-color: rgb(255,200,200)" onclick="clearBlock()")>Clear Block
+</button>
+</div>
+					
+</fieldset>
+
+<fieldset id="details">
+<legend>Task Details</legend>
+
+<div class="label">
+Ha Piecework:</label>
+</div>
+<div id= "divProRate" ></div>
+<!--
+<div class="label" style="float:left;">
+
+<label for="HaRate">$/Ha</label>
+<input type="number" ""
+
+<br0.01" id="HaRate" value= " " size="12" maxlength="36"/>
+</div>
+--> 
+<br style="clear:both;">
+
+
+<div class= "label">
+Planting/Coning:
+</div>
+
+<div class="label" style="float:left;">
+<label for= "RKsearch">Search/Add RKs</label>
+<input type="text" id="RKsearch" name="RKsearch" style="margin: 1px; width: 165px;" onchange="addRKs()" placeholder="filter request keys.." >
+</div>
+
+
+<div class="label" style="float:left;">
+<label for="RK">Request Key</label>
+<select type="text" id="RK" value= " " onchange="setTimeout(makeArrays(),3000)" multiple>
+
+</select>
+</div>
+
+<div class="label" style="float:left;">
+<label for="Trees">Trees</label>
+<input type="number" id="Trees" readonly="true" onclick="createBlockArray()" value= " " />
+</div>
+<div id= "divTrees" ></div>
+
+<div class="label" style="float:left;">
+<label for="Fert">Fert</label>
+<input type="number" id="Fert" onclick="createBlockArray()" value= " " readonly="true" />
+</div>
+<div id= "divFert"></div>
+
+<div class="label" style="float:left;">
+<label for="Cones">Cones</label>
+<input type="number" id="Cones" onclick="createBlockArray()" value= " " readonly="true" />
+</div>
+<div id= "divCones"></div>
+
+<div class="label" style="float:left;">
+<label for="$_Unit">$/Unit</label>
+<input type="number" id="$_Unit" onclick="createBlockArray()" readonly="true" value= " " ></input>
+ <!--step= "0.005"--> 
+</div>
+<div id= "div$_Unit"></div>
+
+
+</fieldset>
+
+
+
+
+<body> 
+<!--onload="createTable()"-->
+<p>
+
+<div class="label" style="float:left;">
+<button type="button" class="inputbutton" style= "background-color: rgb(200,255,200)" id="addRow" value= "Add Row" onclick="addRow()" onmouseout="settabledata()">Input Data to Table</button>
+</div>
+
+
+<div class="label" style="float:left;">
+<button id= "CalcPro" style= "background-color: lightblue" onclick= "calculateprorate()">Calculate ProRate</button>
+</div>
+
+<div class="label" style="float:left;">
+<button id= "CalcPlant"style= "background-color: lightblue" onclick= "calculateplanting()">Calculate Planting</button>
+</div>
+
+<div class="label" style="float:left;">
+<button id= "SumTab" style= "background-color: lightblue" onclick= "sumtable()">Summarize Table</button>
+</div>
+
+<div class="label" style="float:left;">
+<button id= "RemDup" style= "background-color: lightblue" onclick= "removeduplicates()">Remove Duplicates</button>
+</div>
+
+<div class="label" style="float:left;">
+<button id= "Colour" style= "background-color: rgb(255,200,200)" onclick= "colourtable()">Colour Table</button>
+</div>
+
+<br style="clear:both;">
+
+<div class="label" style="float:left;">
+<input type="text" id="myInput1" onkeyup="multiFilter()" placeholder="Search for dates.." title="Type in a date" ></input>
+</div>
+
+<div class="label" style="float:left;">
+<input type="text" id="myInput2" onkeyup="multiFilter()" placeholder="Search for clients.." title="Type in a client" ></input>
+</div>
+
+<div class="label" style="float:left;">
+<input type="text" id="myInput3" onkeyup="multiFilter()" placeholder="Search for blocks.." title="Type in a block" ></input>
+</div>
+
+<div class="label" style="float:left;">
+<input type="text" id="myInput4" onkeyup="multiFilter()" placeholder="Search for tasks.." title="Type in a task" ></input>
+</div>
+
+<div class="label" style="float:left;">
+<input type="text" id="myInput5" onkeyup="multiFilter()" placeholder="Search for names.." title="Type in a name" ></input>
+</div>
+ 
+
+    </p>
+
+<br style="clear:both;">
+
+<div id="cont" ></div>   <!-- the container to add the table  -->
+
+</body>
+
+
+
+
+
+<fieldset id="submit">
+<legend>Submit data</legend>
+<!--
+<div class="label" style="float:left;">
+<button onclick= "gettabledata()" > Get Table Data</button>
+</div>
+
+<div class="label" style="float:left;">
+<button id="SaveTable" style="background-color: rgb(200,255,200)" onclick="settabledata()">Save Table</button>
+</div>
+-->
+<div class="label" style="float:left;">
+<button id="SaveMainTable" style="background-color: rgb(200,255,200)" onclick="settabledata()">Save Table</button>
+</div>
+
+<div class="label" style="float:left;">
+<button id="GetJSON" style="background-color: rgb(200,255,200)" onclick="gettabledata()">Get Saved Table</button>
+</div>
+
+
+
+
+<div class="label" style="float:left;">
+<button id="ClearTable" style="background-color: rgb(255,200,200)" onclick="cleartabledata()">Clear Table</button>
+</div>
+
+
+
+<!--
+
+</form>
+
+-->
+
+<div class="label" style="float:left;">
+<button class="inputbutton">
+<a onclick= "downloaddata()" href= '#' download= 'filename' target="_blank" id="link" >Download CSV File</a>
+</button>
+</div>
+
+<div class="label" style="float:left;">
+<a href= '#' style= "display:none" class="dropbox-saver">Save to Dropbox</a>
+</div>
+<br style="clear:both;">
+
+<div class="label" style="float:left;">
+<label for="disk_c">Local Storage usage :</label>
+<meter id="disk_c" value= checkStorage() >2 out of 10</meter>
+</div>
+
+
+</div>
+<!-- Tab content -->
+<div id="Ops Records" class="tabcontent">
+
+<!--
+<br style="clear:both;">
+-->
+<div id="opscont" style="float:left;">
+
+
+<table id="OpsTable">
+</table>
+</div>
+
+</div>
+
+
+
+</html>
