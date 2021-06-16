@@ -1,0 +1,194 @@
+Executing:
+CREATE SCHEMA `silvifor` ;
+
+
+CREATE TABLE `silvifor`.`employees` (
+  `idEmployees` INT NOT NULL,
+  `FirstName` VARCHAR(100) NULL,
+  `LastName` VARCHAR(100) NULL,
+  `Certificate` VARCHAR(45) NULL,
+  `Enabled` TINYINT NULL,
+  `IsLead` TINYINT NULL,
+  PRIMARY KEY (`idEmployees`));
+
+
+CREATE TABLE `silvifor`.`clients` (
+  `idClients` INT NOT NULL,
+  `Name` VARCHAR(100) NULL,
+  PRIMARY KEY (`idClients`));
+
+CREATE TABLE `silvifor`.`requestkeys` (
+  `idRequestKeys` INT NOT NULL,
+  `RK` VARCHAR(45) NULL,
+  `Species` VARCHAR(45) NULL,
+  PRIMARY KEY (`idRequestKeys`));
+
+CREATE TABLE `silvifor`.`surveyblocks` (
+  `idSurveyBlocks` INT NOT NULL,
+  `BlockName` VARCHAR(45) NULL,
+  `BlockHa` DECIMAL NULL,
+  `Enabled` TINYINT NULL,
+  `ActiveYear` DATETIME NULL,
+  PRIMARY KEY (`idSurveyBlocks`));
+
+
+CREATE TABLE `silvifor`.`tasks` (
+  `idtasks` INT NOT NULL,
+  `TaskName` VARCHAR(100) NULL,
+  PRIMARY KEY (`idtasks`));
+
+ALTER TABLE `silvifor`.`clients` 
+CHANGE COLUMN `idClients` `idClients` INT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `silvifor`.`employees` 
+CHANGE COLUMN `idEmployees` `idEmployees` INT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `silvifor`.`requestkeys` 
+CHANGE COLUMN `idRequestKeys` `idRequestKeys` INT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `silvifor`.`surveyblocks` 
+CHANGE COLUMN `idSurveyBlocks` `idSurveyBlocks` INT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `silvifor`.`tasks` 
+CHANGE COLUMN `idtasks` `idtasks` INT NOT NULL AUTO_INCREMENT ;
+
+
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('BCTS');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Chemainus FN');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Dididaht FN');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Hancock');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Island Timberlands (legacy)');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Kapoor Lumber');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('LPP');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Mosaic Central');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Mosaic North');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Mosaic South');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Mount Newton Seed Orchard');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Municipality of North Cowichan');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Timberwest (legacy)');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Silvifor');
+INSERT INTO `silvifor`.`clients` (`Name`) VALUES ('Woodlot');
+
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Ali', 'Almohamed', '143567', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Anna', 'Corbett', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Brittny', 'Bukva', '1234', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Cameron', 'Stewart', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Christopher', 'Wickham', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Cyrus', 'Gray', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Damien', 'Pine', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Danny', 'Hamstra', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Emily', 'McKim', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Jamieson', 'Wickham', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Jeremiah', 'Polard', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Jordan', 'Hall', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Kassia', 'Dancey', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Laura', 'Pine', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Michael', 'Lovering', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Mike', 'Bain', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Miroslav', 'Szucs', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Noah', 'Wickham', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Robin', 'Ayearst', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Sarah', 'Madsen', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Tyler', 'Leech', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Tyler', 'Parkes', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Yousef', 'Mohammad', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Andy', 'Lackie', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Dawn', 'Limin', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Jeremy', 'Stacey', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Jim', 'Laurie', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Dawn', 'Cox', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Colin', 'Milligan', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Kelly', 'Moore', '', '1', '0');
+INSERT INTO `silvifor`.`employees` (`FirstName`, `LastName`, `Certificate`, `Enabled`, `IsLead`) VALUES ('Randell', 'Thompson', '', '1', '0'); 	
+
+
+INSERT INTO `silvifor`.`requestkeys` (`RK`, `Species`) VALUES ('\'2020DSI0107', 'CW');
+INSERT INTO `silvifor`.`requestkeys` (`RK`, `Species`) VALUES ('\'2020DSI0098', 'FDC');
+INSERT INTO `silvifor`.`requestkeys` (`RK`, `Species`) VALUES ('\'2020DSI0109', 'CW');
+INSERT INTO `silvifor`.`requestkeys` (`RK`, `Species`) VALUES ('\'2020DSI0108', 'CW');
+INSERT INTO `silvifor`.`requestkeys` (`RK`, `Species`) VALUES ('\'20M17CAX01', 'FDC');
+INSERT INTO `silvifor`.`requestkeys` (`RK`, `Species`) VALUES ('\'20M16THX02D', 'FDC');
+INSERT INTO `silvifor`.`requestkeys` (`RK`, `Species`) VALUES ('\'2020DSI0094', 'FDC');
+INSERT INTO `silvifor`.`requestkeys` (`RK`, `Species`) VALUES ('3\' Cones', '');
+INSERT INTO `silvifor`.`requestkeys` (`RK`, `Species`) VALUES ('4\' Cones', '');
+
+
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Browse Protection - Cone Installation');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Browse Protection - Cone Maintenance');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Browse Protection - Cone Recycling');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Browse Protection - Cone Removal');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Browse Protection - Repellant - Backpack');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Browse Protection - Repellant - Dipping');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Browse Protection - Tiller Netting');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Brushing - Equipment Maintenance');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Brushing - Basal');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Brushing - Campground Maintenance');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Brushing - Foliar Backpack');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Brushing - Foliar Truck');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Brushing - Manual Brushing');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Brushing - Girdling');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Brushing - Hack and Squirt');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Brushing - Supervision');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Brushing - Fasal');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Campsite Maintenance');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Cone Picking');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Environment - grass seeding');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Environment - spill response');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Environment - water quality');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Fire Protection - Equipment/Maintenance');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Fire Protection - Admin/Meetings');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Fire Protection - Inspections');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Fire Protection - Standby');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Fire Protection - Training');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Fire Fighting - Call Response');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Fire Fighting - Mop up');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Fire Fighting - Initial Attack');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Information Management - B&W');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Information Management - General');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Information Management - Grass Seeding');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Information Management - Hazard Abatement');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Information Management - Planting');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Information Management - Reforestation Plan');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Information Management - Surveys');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Management - Meeting');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Pruning - Pw');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Pruning - Lift');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Road Maintenance - Truck/Equipment Maintenance');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Road Maintenance - Sign Installation');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Road Maintenance - Truck Wash');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Road Maintenance - RoW clearing');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Root Disease Mgmt- Stump painting');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Root Disease Mgmt- Surveys');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Reforestation Plan');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Safety - Audit');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Safety - Meeting');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Safety - Admin - Campsites');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Safety - Admin - Operations');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Safety - Training');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Safety - Vehicle Maintenance');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Safety - Spill Response');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Security');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Shed - General Duties');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Silviculture Surveys');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Silviculture Surveys - Free Growing');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Silviculture Surveys - Stocking Ocular');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Silviculture Surveys - Stocking Plot');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Silviculture Surveys - Survival Plot');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Site Prep - Pile Burning');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Site Prep - Assessments');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Site Prep - Salvage');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Training');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Fill Plant');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Primary Plant');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Quality Control');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Roadside Plant');
+INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Supervision');
+
+
+
+
+
+
+
+
+
