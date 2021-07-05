@@ -678,7 +678,7 @@ function deleteRows(table){
 }
 
 
-//block filter
+//block filter test
 
 function blockFilter() {
 

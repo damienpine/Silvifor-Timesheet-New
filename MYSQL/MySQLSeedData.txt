@@ -184,8 +184,32 @@ INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Quality Con
 INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Roadside Plant');
 INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Supervision');
 
+CREATE TABLE `silvifor`.`block_types` (
+  `idBlock_type` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(150) NULL,
+  PRIMARY KEY (`idBlock_type`));
 
+ALTER TABLE `silvifor`.`surveyblocks` 
+ADD COLUMN `idBlock_type` INT NULL AFTER `ActiveYear`,
+ADD INDEX `fkBlock_type_idx` (`idBlock_type` ASC) VISIBLE;
+;
+ALTER TABLE `silvifor`.`surveyblocks` 
+ADD CONSTRAINT `fkBlock_type`
+  FOREIGN KEY (`idBlock_type`)
+  REFERENCES `silvifor`.`block_types` (`idBlock_type`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
 
+INSERT INTO `silvifor`.`block_types` (`Name`) VALUES ('Survey Blocks 2021');
+INSERT INTO `silvifor`.`block_types` (`Name`) VALUES ('Brushing Blocks 2021');
+INSERT INTO `silvifor`.`block_types` (`Name`) VALUES ('Tree Planting Blocks 2021');
+
+update silvifor.surveyblocks set idBlock_type = 1 where enabled = 1;
+
+ALTER TABLE `silvifor`.`surveyblocks` 
+RENAME TO  `silvifor`.`blocks` ;
+
+update silvifor.blocks set enabled = 1, activeyear = '2021-01-01', idblock_type = 2 where enabled is null;
 
 
 
