@@ -671,6 +671,7 @@ function deleteRows(table){
     }
 
     saveBlockList();
+    saveOpsList();
 
     
   }
@@ -2954,21 +2955,29 @@ var formatter = new Intl.NumberFormat('en-US', {
 document.getElementById("sum1").value = datearray.length;
 document.getElementById("sum2").value = clientarray.length;
 document.getElementById("sum3").value = blockarray.length;
-document.getElementById("sum4").value = Number(blockhaarray.reduce(function(a,b){return a + b})).toFixed(2);
+if(blockhaarray.length>0){
+  document.getElementById("sum4").value = Number(blockhaarray.reduce(function(a,b){return a + b})).toFixed(2);
+}
 document.getElementById("sum5").value = taskarray.length;
 document.getElementById("sum6").value = namearray.length;
-document.getElementById("sum7").value = Number(hoursarray.reduce(function(a,b){return a + b})).toFixed(2);
-document.getElementById("sum8").value = Number(ot1array.reduce(function(a,b){return a + b})).toFixed(2);
-document.getElementById("sum9").value = Number(ot2array.reduce(function(a,b){return a + b})).toFixed(2);
-
+if(hoursarray.length>0){
+  document.getElementById("sum7").value = Number(hoursarray.reduce(function(a,b){return a + b})).toFixed(2);
+}
+if(ot1array.length>0){
+  document.getElementById("sum8").value = Number(ot1array.reduce(function(a,b){return a + b})).toFixed(2);
+}
+if(ot2array.length>0){
+  document.getElementById("sum9").value = Number(ot2array.reduce(function(a,b){return a + b})).toFixed(2);
+}
 if(haarray.length>0){
   document.getElementById("sum10").value = Number(haarray.reduce(function(a,b){return a + b})).toFixed(4);
 }
-
-document.getElementById("sum11").value = (proratearray.reduce(function(a,b){return a + b})/proratearray.length).toFixed(4);
-
-document.getElementById("sum12").value =(adjhaarray.reduce(function(a,b){return a + b})).toFixed(4);
-
+if(proratearray.length>0){
+  document.getElementById("sum11").value = (proratearray.reduce(function(a,b){return a + b})/proratearray.length).toFixed(4);
+}
+if(adjhaarray.length>0){
+  document.getElementById("sum12").value =(adjhaarray.reduce(function(a,b){return a + b})).toFixed(4);
+}
 var sumprod = 0;
 var l= haratearray.length;
          for(var i=0; i<l; i++) {
@@ -2980,13 +2989,15 @@ document.getElementById("sum13").value = formatter.format(Number(sumprod)); //Nu
 //(haratearray.reduce(function(r,a,i){return r+a*adjhaarray[i]})/adjhaarray.reduce(function(a,b){return a + b})).toFixed(4);
 
 document.getElementById("sum14").value = speciesarray.length;
-
-document.getElementById("sum15").value = Number(treesarray.reduce(function(a,b){return a + b})).toFixed();
-
-document.getElementById("sum16").value = Number(fertarray.reduce(function(a,b){return a + b})).toFixed();
-
-document.getElementById("sum17").value = Number(conesarray.reduce(function(a,b){return a + b})).toFixed();
-
+if(treesarray.length>0){
+  document.getElementById("sum15").value = Number(treesarray.reduce(function(a,b){return a + b})).toFixed();
+}
+if(fertarray.length>0){
+  document.getElementById("sum16").value = Number(fertarray.reduce(function(a,b){return a + b})).toFixed();
+}
+if(conesarray.length>0){
+  document.getElementById("sum17").value = Number(conesarray.reduce(function(a,b){return a + b})).toFixed();
+}
 //alert(hrarray)
 //alert(treesarray)
 
@@ -2995,11 +3006,11 @@ var l= hrarray.length;
          for(var i=0; i<l; i++) {
            sumprod += hrarray[i]*treesarray[i];
          }
+if(treesarray.length>0){
+  document.getElementById("sum18").value = formatter.format(sumprod/treesarray.reduce(function(a,b){return a + b}));
+}
 
-document.getElementById("sum18").value = formatter.format(sumprod/treesarray.reduce(function(a,b){return a + b}));
-
-
-if (treesarray.reduce(function(a,b){return a + b})>0){
+if (treesarray.length>0 && treesarray.reduce(function(a,b){return a + b})>0){
 
 var sumprod = 0;
 var l= hrarray.length;
@@ -3012,7 +3023,7 @@ document.getElementById("sum19").value = formatter.format(sumprod);
 
 }else{
 
-  if (conesarray.reduce(function(a,b){return a + b})>0){
+  if (conesarray.length>0 && conesarray.reduce(function(a,b){return a + b})>0){
 
   var sumprod = 0;
   var l= hrarray.length;
@@ -3029,10 +3040,15 @@ document.getElementById("sum19").value = formatter.format(sumprod);
 }
 
 document.getElementById("sum20").value = leadarray.length;
-document.getElementById("sum21").value = trucksarray.reduce(function(a,b){return a + b});
-document.getElementById("sum22").value = kmarray.reduce(function(a,b){return a + b});
-document.getElementById("sum23").value = Number(remarray.reduce(function(a,b){return a + b})/remarray.length).toFixed(2);
-
+if(trucksarray.length>0){
+  document.getElementById("sum21").value = trucksarray.reduce(function(a,b){return a + b});
+}
+if(kmarray.length>0){
+  document.getElementById("sum22").value = kmarray.reduce(function(a,b){return a + b});
+}
+if(remarray.length>0){
+  document.getElementById("sum23").value = Number(remarray.reduce(function(a,b){return a + b})/remarray.length).toFixed(2);
+}
 colourtable();
 settabledata();
 //(arr1.reduce(function(r,a,i){return r+a*arr2[i]},0));
@@ -3198,12 +3214,12 @@ function colourtable(){
   var i,c,j,d;
   var str1="";
   var str2="";
-
-  for (c=0; c< myTab.rows[1].cells.length; c++){
+  if(myTab.rows.length>1){
+    for (c=0; c< myTab.rows[1].cells.length; c++){
 
       tr[1].getElementsByTagName("td")[c].style.backgroundColor="lightblue";
     }
-
+  }
   for(i = 1; i < myTab.rows.length-1; i++){
 
 
@@ -4918,13 +4934,15 @@ function createOpsTable(){
 
 
   var opstorage= JSON.parse(localStorage.getItem('opslist'));
-  var obj=opstorage;
+  var opsobj=opstorage;
 
+
+  
 
 
 //let header = Object.keys(obj[0]);
 
-  let header=['Date','Client','Name & Certificate','Location','Pest Controlled & Purpose','Product','Litres','Area','Rate','Method','Windspeed AM','Wind Dir AM','Temperature AM','Humidity AM','Windspeed PM', 'Wind Dir PM','Temperature PM', 'Humidity PM'];
+  let opsheader=['Date','Client','Name & Certificate','Location','Pest Controlled & Purpose','Product','Litres','Area','Rate','Method','Windspeed AM','Wind Dir AM','Temperature AM','Humidity AM','Windspeed PM', 'Wind Dir PM','Temperature PM', 'Humidity PM'];
   let myTable=document.getElementById("OpsTable")
   myTable.deleteTHead();
 
@@ -4944,7 +4962,7 @@ function createOpsTable(){
      row.appendChild(th);
 
 
-  for(let key of header){
+  for(let key of opsheader){
 
      th= document.createElement("th");
      th.setAttribute('class','sticky');
@@ -5034,11 +5052,11 @@ function createOpsTable(){
   myTable.appendChild(tbody);
 //tbody.setAttribute('onmouseout','sumHours()');
 
-alert(JSON.stringify(obj))
 
-  if(obj!= null){
-    for (var i = 0; i < obj.length; i++) {
-    let element = (obj[i]);
+
+  if(opsobj!= null){
+    for (var i = 0; i < opsobj.length; i++) {
+    let element = (opsobj[i]);
 
 
     //var tbody = document.getElementById('tbody');
@@ -5052,33 +5070,42 @@ alert(JSON.stringify(obj))
                     check.setAttribute('onclick','highlightRow(event.target)')
          cell.appendChild(check);
          //row.appendChild(td);
-
-       }
+    
+       
         
        
 
   //for (let element of obj) {
     //let row = table.insertRow();
-    for (key of header) {
+    for (key of opsheader) {
+      
       let cell = row.insertCell();
       let input = document.createElement('input');
+      
         
         if(key=='Date'){
           input.setAttribute('type','date')
+          
         }else{
-          if(key==('Location'||'Windspeed AM'||'Windspeed PM')){
+          if(key=='Location'||key=='Windspeed AM'||key=='Windspeed PM'){
             input.setAttribute('type','text')
+            
           }else{
-            if(key==('Litres'||'Area'||'Rate'||'Temperature AM','Humidity AM'||'Temperature PM'||'Humidity PM')){
+            if(key=='Litres'||key=='Area'||key=='Rate'||key=='Temperature AM'||key=='Humidity AM'||key=='Temperature PM'||key=='Humidity PM'){
               input.setAttribute('type','number');
+              
             }else{
               input.setAttribute('type','datalist');
+              
             }
           }
         }
+        cell.appendChild(input)
       }
-    }
+    } 
+  }
 }
+
 
 //add ops row
 function addOpsRow(event){
@@ -5237,19 +5264,38 @@ document.getElementById("RemHa").value="";
 function saveOpsList(){
   let myTable= document.getElementById("OpsTable")
 
-  function Obj(Block,BlockHa,Price,RemHa){
-    this.Block=Block;
-    this.BlockHa=BlockHa;
-    this.Price=Price;
-    this.RemHa=RemHa;
+  function Obj(Date,Client,Name_Certificate,Location,Pest_Controlled_Purpose,Product,Litres,Area,Rate,Method,Windspeed_AM,Wind_Dir_AM,Temperature_AM,Humidity_AM,Windspeed_PM, Wind_Dir_PM,Temperature_PM, Humidity_PM){
+    this.Date=Date;
+    this.Client=Client;
+    this.Name_Certificate=Name_Certificate;
+    this.Location=Location;
+    this.Pest_Controlled_Purpose=Pest_Controlled_Purpose;
+    this.Product=Product;
+    this.Litres=Litres;
+    this.Area=Area;
+    this.Rate=Rate;
+    this.Method=Method;
+    this.Windspeed_AM=Windspeed_AM; 
+    this.Wind_Dir_AM=Wind_Dir_AM;
+    this.Temperature_AM=Temperature_AM;
+    this.Humidity_AM=Humidity_AM;
+    this.Windspeed_PM=Windspeed_PM;
+    this.Wind_Dir_PM=Wind_Dir_PM;
+    this.Temperature_PM=Temperature_PM;
+    this.Humidity_PM=Humidity_PM;
   }
 var myObjArr=[];
-
   for(i=1;i<myTable.rows.length; i++){
+    
     var tr= myTable.rows[i];
     var input= tr.getElementsByTagName("input");
-    var obj = new Obj(input[1].value, input[2].value, input[3].value, input[4].value);
-    myObjArr.push(obj)
+alert(input.length)
+    var opsobj = new Obj(input[1].value, input[2].value, input[3].value, input[4].value, input[5].value, input[6].value, input[7].value, input[8].value, input[9].value, input[10].value, input[11].value, input[12].value, input[13].value, input[14].value, input[15].value, input[16].value);
+    //alert(JSON.stringify(opsobj))
+    myObjArr.push(opsobj)
+    alert(JSON.stringify(myObjArr))
   }
+  
 localStorage.setItem('opslist',JSON.stringify(myObjArr))
+alert(localStorage.getItem('opslist'))
 }
