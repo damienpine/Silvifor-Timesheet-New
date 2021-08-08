@@ -5085,79 +5085,82 @@ function createOpsTable(){
   th.appendChild(button);
   row.appendChild(th);
 
+  if(myTable.children.length<2){
+    let tbody = document.createElement('tbody');
+    myTable.appendChild(tbody);
+  
+  //tbody.setAttribute('onmouseout','sumHours()');
 
-  let tbody = document.createElement('tbody');
-  myTable.appendChild(tbody);
-//tbody.setAttribute('onmouseout','sumHours()');
 
 
-
-  if(opsobj!= null){
-    alert(JSON.stringify(opsobj))
+    if(opsobj!= null){
+      alert(JSON.stringify(opsobj))
     
-    for (var i = 0; i < opsobj.length; i++) {
-    let element = (opsobj[i]);
+      for (var i = 0; i < opsobj.length; i++) {
+        let element = (opsobj[i]);
       
 
-    //var tbody = document.getElementById('tbody');
+        //var tbody = document.getElementById('tbody');
 
-       let row = tbody.insertRow();
-       let cell = row.insertCell();
+        let row = tbody.insertRow();
+        let cell = row.insertCell();
 
-       let check = document.createElement("input");
-         check.setAttribute('type','checkbox')
-         check.setAttribute('id','CheckOps'+i);
-         check.setAttribute('onclick','highlightRow(event.target)')
-         cell.appendChild(check);
-         //row.appendChild(td);
+        let check = document.createElement("input");
+        check.setAttribute('type','checkbox')
+        check.setAttribute('id','CheckOps'+i);
+        check.setAttribute('onclick','highlightRow(event.target)')
+        cell.appendChild(check);
+        //row.appendChild(td);
     
        
         
        
 
-  //for (let element of obj) {
-    //let row = table.insertRow();
-    alert(Object.keys(element))
-    for (key in element) {
+      //for (let element of obj) {
+      //let row = table.insertRow();
+      //alert(Object.keys(element))
+      for (key in element) {
       
-      let cell = row.insertCell();
-      let input = document.createElement('input');
+        let cell = row.insertCell();
+        let input = document.createElement('input');
       
         
-        if(key=='Date'){
+          if(key=='Date'){
           
-          input.setAttribute('type','text');
-          input.setAttribute('class','full');
-          input.value = element[key];
-          
-        }else{
-          if(key=='Location'||key=='Wind_Dir_AM'||key=='Wind_Dir_PM'){
             input.setAttribute('type','text');
             input.setAttribute('class','full');
             input.value = element[key];
-            
+          
           }else{
-            if(key=='Litres'||key=='Area'||key=='Rate'||key=='Temperature_AM'||key=='Humidity_AM'||key=='Temperature_PM'||key=='Humidity_PM'||key=='Windspeed_AM'||key=='Windspeed_PM'){
-              input.setAttribute('type','number');
+            if(key=='Location'||key=='Wind_Dir_AM'||key=='Wind_Dir_PM'){
+              input.setAttribute('type','text');
               input.setAttribute('class','full');
               input.value = element[key];
-              
+            
             }else{
-              if(key=='Product'||key=='Method'){
+              if(key=='Litres'||key=='Area'||key=='Rate'||key=='Temperature_AM'||key=='Humidity_AM'||key=='Temperature_PM'||key=='Humidity_PM'||key=='Windspeed_AM'||key=='Windspeed_PM'){
+                input.setAttribute('type','number');
                 input.setAttribute('class','full');
                 input.value = element[key];
+                //alert((element[key])+" "+typeof(element[key]))
+              
+              }else{
+                if(key=='Product'||key=='Method'){
+                  input.setAttribute('class','full');
+                  input.value = element[key];
+                }
+                input.setAttribute('type','datalist');
+                input.value = element[key];
+              
+              
               }
-              input.setAttribute('type','datalist');
-              input.value = element[key];
-              
-              
             }
-          }
+          }  
+          cell.appendChild(input)
         }
-        cell.appendChild(input)
-      }
-    } 
-  }
+      } 
+    }
+  } 
 }
 
 
@@ -5239,6 +5242,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsLitres'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','number');
+        input.value = document.getElementById('opsLitres').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5246,6 +5250,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsArea'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','number');
+        input.value = document.getElementById('opsArea').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5253,6 +5258,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsRate'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','number');
+        input.value = document.getElementById('opsRate').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5261,6 +5267,7 @@ function addOpsRow(event){
         input.setAttribute('class','full');
         input.setAttribute('type','text');
         input.setAttribute('list','methodlist');
+        input.value = document.getElementById('opsMethod').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5268,6 +5275,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsWindspeed AM'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','number');
+        input.value = document.getElementById('opsWindspeed AM').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5275,6 +5283,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsWind Dir AM'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','text');
+        input.value = document.getElementById('opsWind Dir AM').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5282,6 +5291,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsTemperature AM'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','number');
+        input.value = document.getElementById('opsTemperature AM').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5289,6 +5299,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsHumidity AM'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','number');
+        input.value = document.getElementById('opsHumidity AM').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5296,6 +5307,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsWindspeed PM'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','number');
+        input.value = document.getElementById('opsWindspeed PM').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5303,6 +5315,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsWind Dir PM'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','text');
+        input.value = document.getElementById('opsWind Dir PM').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5310,6 +5323,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsTemperature PM'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','number');
+        input.value = document.getElementById('opsTemperature PM').value;
         cell.appendChild(input);
 
         cell = row.insertCell();
@@ -5317,6 +5331,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsHumidity PM'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','number');
+        input.value = document.getElementById('opsHumidity PM').value;
         cell.appendChild(input);
 
 
@@ -5357,13 +5372,12 @@ var myObjArr=[];
     
     var tr= myTable.rows[i];
     var input= tr.getElementsByTagName("input");
-
-    var opsobj = new Obj(input[1].value, input[2].value, input[3].value, input[4].value, input[5].value, input[6].value, input[7].value, input[8].value, input[9].value, input[10].value, input[11].value, input[12].value, input[13].value, input[14].value, input[15].value, input[16].value);
+    var opsobj = new Obj(input[1].value, input[2].value, input[3].value, input[4].value, input[5].value, input[6].value, input[7].value, input[8].value, input[9].value, input[10].value, input[11].value, input[12].value, input[13].value, input[14].value, input[15].value, input[16].value, input[17].value, input[18].value);
     //alert(JSON.stringify(opsobj))
     myObjArr.push(opsobj)
     
   }
   
 localStorage.setItem('opslist',JSON.stringify(myObjArr))
-alert(localStorage.getItem('opslist'))
+//alert(localStorage.getItem('opslist'))
 }
