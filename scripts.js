@@ -20,6 +20,12 @@ window.onload =  function(){
        gettoday();
        dPicker();
        getotherdata();
+       
+       fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
+.then(response => response.json())
+.then(commits => alert(commits[0].author.login));
+
+       //getCSV('https://github.com/damienpine/silvifor-timesheet/blob/main/Crew.csv');
 
 
        document.getElementById("checkHide").checked=false;
@@ -35,11 +41,15 @@ document.getElementById("empTable").addEventListener("change", function(){
  
   });
 
+  document.getElementById("OpsTable").addEventListener("change", function(){
+    saveOpsList(); 
+  });
+
 
   document.getElementById("disk_c").value= checkStorage();
-       if (confirm("Open Previously Saved Table?")) {
+       //if (confirm("Open Previously Saved Table?")) {
          gettabledata();
-       }
+       //}
 
     
     };
@@ -4952,7 +4962,7 @@ function createOpsTable(){
 
 //let header = Object.keys(obj[0]);
 
-  let opsheader=['Date','Client','Name & Certificate','Location','Pest Controlled & Purpose','Product','Litres','Area','Rate','Method','Windspeed AM','Wind Dir AM','Temperature AM','Humidity AM','Windspeed PM', 'Wind Dir PM','Temperature PM', 'Humidity PM'];
+  let opsheader=['Date','Client','Name & Certificate','Location','Pest Controlled & Purpose','Product','Litres','Adjuvant','Litres','Area','Rate','Method','Windspeed AM','Wind Dir AM','Temperature AM','Humidity AM','Windspeed PM', 'Wind Dir PM','Temperature PM', 'Humidity PM'];
   let myTable=document.getElementById("OpsTable")
   myTable.deleteTHead();
 
@@ -4962,7 +4972,7 @@ function createOpsTable(){
 
    let row = thead.insertRow();
    let th = document.createElement("th");
-     th.setAttribute('class','sticky')
+     //th.setAttribute('class','sticky')
    let button = document.createElement("button");
      button.setAttribute('id','DeleteOps');
      button.style= "background-color: rgb(255,200,200)" 
@@ -4975,7 +4985,7 @@ function createOpsTable(){
   for(let key of opsheader){
 
     th= document.createElement("th");
-    th.setAttribute('class','sticky');
+    //th.setAttribute('class','sticky');
     let text = document.createTextNode(key);
      
       let input = document.createElement("input");
@@ -4991,7 +5001,7 @@ function createOpsTable(){
      if(key=='Location'){
 
        let mylist=JSON.parse(localStorage.getItem('blocklist'))
-
+       
        let y=document.createElement("datalist");
          y.setAttribute('id','myblocklist');
 
@@ -5001,6 +5011,7 @@ function createOpsTable(){
          y.appendChild(opt)
        }
        th.appendChild(y)
+       th.setAttribute('class','sticky');
 
        input.setAttribute('placeholder','add '+ key)
        //input.setAttribute('onkeyup','blockFilter(event)')
@@ -5055,14 +5066,21 @@ function createOpsTable(){
              input.setAttribute('list','pestlist');//need to make this list
            }else{
              if(key=='Product'){
-              input.setAttribute('placeholder','add '+ key);
-              input.setAttribute('type','text');
-              input.setAttribute('class','full');
-              input.setAttribute('list','productlist');//need to make this list
-             }else{
                input.setAttribute('placeholder','add '+ key);
+               input.setAttribute('type','text');
                input.setAttribute('class','full');
-               input.setAttribute('type','number');
+               input.setAttribute('list','productlist');//need to make this list
+             }else{
+               if(key=='Adjuvant'){
+                 input.setAttribute('placeholder','add '+ key);
+                 input.setAttribute('type','text');
+                 input.setAttribute('class','full');
+                 input.setAttribute('list','productlist');//need to make this list
+               }else{
+                 input.setAttribute('placeholder','add '+ key);
+                 input.setAttribute('class','full');
+                 input.setAttribute('type','number');
+               }
              }
            }
          }
@@ -5076,7 +5094,7 @@ function createOpsTable(){
   }
 
   th = document.createElement('th');
-  th.setAttribute('class','sticky');
+  //th.setAttribute('class','sticky');
   button = document.createElement('button');
   button.setAttribute('id','AddOpsRecord');
   button.setAttribute('onclick','addOpsRow(event)')
@@ -5094,8 +5112,7 @@ function createOpsTable(){
 
 
     if(opsobj!= null){
-      alert(JSON.stringify(opsobj))
-    
+          
       for (var i = 0; i < opsobj.length; i++) {
         let element = (opsobj[i]);
       
@@ -5125,37 +5142,47 @@ function createOpsTable(){
         let input = document.createElement('input');
       
         
-          if(key=='Date'){
+        if(key=='Date'){
           
+          input.setAttribute('type','text');
+          input.setAttribute('class','full');
+          input.value = element[key];
+          
+        }else{
+
+          if(key=='Location'){
+            cell.setAttribute('class','sticky')
             input.setAttribute('type','text');
+            input.setAttribute('list','myblocklist');
             input.setAttribute('class','full');
             input.value = element[key];
-          
+            
           }else{
-            if(key=='Location'||key=='Wind_Dir_AM'||key=='Wind_Dir_PM'){
+
+            if(key=='Wind_Dir_AM'||key=='Wind_Dir_PM'){
               input.setAttribute('type','text');
               input.setAttribute('class','full');
               input.value = element[key];
             
             }else{
-              if(key=='Litres'||key=='Area'||key=='Rate'||key=='Temperature_AM'||key=='Humidity_AM'||key=='Temperature_PM'||key=='Humidity_PM'||key=='Windspeed_AM'||key=='Windspeed_PM'){
+              if(key=='Litres'||key=='ALitres'||key=='Area'||key=='Rate'||key=='Temperature_AM'||key=='Humidity_AM'||key=='Temperature_PM'||key=='Humidity_PM'||key=='Windspeed_AM'||key=='Windspeed_PM'){
                 input.setAttribute('type','number');
                 input.setAttribute('class','full');
                 input.value = element[key];
                 //alert((element[key])+" "+typeof(element[key]))
               
               }else{
-                if(key=='Product'||key=='Method'){
+                if(key=='Product'||key=='Adjuvant'||key=='Method'){
                   input.setAttribute('class','full');
                   input.value = element[key];
                 }
-                input.setAttribute('type','datalist');
-                input.value = element[key];
-              
-              
+                  input.setAttribute('type','datalist');
+                  input.value = element[key];       
+                }
               }
-            }
-          }  
+            }  
+            
+          }
           cell.appendChild(input)
         }
       } 
@@ -5210,6 +5237,7 @@ function addOpsRow(event){
         cell.appendChild(input);
 
         cell=row.insertCell();
+        cell.setAttribute('class','sticky')
         input=document.createElement("input");
         input.setAttribute('id','opsLocation'+rows)
         //input.setAttribute('readonly','true')
@@ -5218,7 +5246,7 @@ function addOpsRow(event){
         input.setAttribute('list','myblocklist');
         input.value= document.getElementById("opsLocation").value;
         cell.appendChild(input)
-
+        
    
         cell=row.insertCell();
         input= document.createElement("input");
@@ -5240,6 +5268,23 @@ function addOpsRow(event){
         cell = row.insertCell();
         input= document.createElement("input");
         input.setAttribute('id','opsLitres'+i);
+        input.setAttribute('class','full');
+        input.setAttribute('type','number');
+        input.value = document.getElementById('opsLitres').value;
+        cell.appendChild(input);
+
+        cell = row.insertCell();
+        input= document.createElement("input");
+        input.setAttribute('id','opsAdjuvant'+i);
+        input.setAttribute('class','full');
+        input.setAttribute('type','text');
+        input.setAttribute('list','productlist');
+        input.value = document.getElementById('opsProduct').value;
+        cell.appendChild(input);
+
+        cell = row.insertCell();
+        input= document.createElement("input");
+        input.setAttribute('id','opsALitres'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','number');
         input.value = document.getElementById('opsLitres').value;
@@ -5347,7 +5392,7 @@ function addOpsRow(event){
 function saveOpsList(){
   let myTable= document.getElementById("OpsTable")
 
-  function Obj(Date,Client,Name_Certificate,Location,Pest_Controlled_Purpose,Product,Litres,Area,Rate,Method,Windspeed_AM,Wind_Dir_AM,Temperature_AM,Humidity_AM,Windspeed_PM, Wind_Dir_PM,Temperature_PM, Humidity_PM){
+  function Obj(Date,Client,Name_Certificate,Location,Pest_Controlled_Purpose,Product,Litres,Adjuvant,ALitres,Area,Rate,Method,Windspeed_AM,Wind_Dir_AM,Temperature_AM,Humidity_AM,Windspeed_PM, Wind_Dir_PM,Temperature_PM, Humidity_PM){
     this.Date=Date;
     this.Client=Client;
     this.Name_Certificate=Name_Certificate;
@@ -5355,6 +5400,8 @@ function saveOpsList(){
     this.Pest_Controlled_Purpose=Pest_Controlled_Purpose;
     this.Product=Product;
     this.Litres=Litres;
+    this.Adjuvant=Adjuvant;
+    this.ALitres=ALitres;
     this.Area=Area;
     this.Rate=Rate;
     this.Method=Method;
@@ -5372,8 +5419,7 @@ var myObjArr=[];
     
     var tr= myTable.rows[i];
     var input= tr.getElementsByTagName("input");
-    var opsobj = new Obj(input[1].value, input[2].value, input[3].value, input[4].value, input[5].value, input[6].value, input[7].value, input[8].value, input[9].value, input[10].value, input[11].value, input[12].value, input[13].value, input[14].value, input[15].value, input[16].value, input[17].value, input[18].value);
-    //alert(JSON.stringify(opsobj))
+    var opsobj = new Obj(input[1].value, input[2].value, input[3].value, input[4].value, input[5].value, input[6].value, input[7].value, input[8].value, input[9].value, input[10].value, input[11].value, input[12].value, input[13].value, input[14].value, input[15].value, input[16].value, input[17].value, input[18].value,input[19].value,input[20].value);
     myObjArr.push(opsobj)
     
   }
@@ -5381,3 +5427,55 @@ var myObjArr=[];
 localStorage.setItem('opslist',JSON.stringify(myObjArr))
 //alert(localStorage.getItem('opslist'))
 }
+
+function loadJSON(file,callback) {
+  
+  var xobj = new XMLHttpRequest();
+      xobj.overrideMimeType("application/json");
+  xobj.open('GET', file, true);
+  xobj.onreadystatechange = function() {
+       if (xobj.readyState == 4 && xobj.status == "200"){
+         callback(xobj.responseText);
+       }
+  };
+  xobj.send(null)
+}
+
+function loadCSV(file,callback){
+alert(file)
+  var xobj = new XMLHttpRequest();
+      xobj.overrideMimeType("application/csv");
+  xobj.open('GET', file, true);
+  alert(xobj.status)
+  xobj.onreadystatechange = function(){
+       if (xobj.readyState == 4 && xobj.status == "200"){
+         callback(xobj.responseText);
+       }
+  };
+  xobj.send(null);
+}
+
+function getJSON(file){
+  loadJSON(file,function(response){
+    var myJSON = JSON.parse(response)
+  });
+}
+
+function getCSV(file){
+    loadCSV(file,function(response){
+    var myCSV = Papa.parse(response,
+      {header: true,
+        dynamicTyping: true,
+        delimiter: "",
+        newline: "",
+      });
+      
+    alert(myCSV)
+  });
+  
+}
+//getCSV('Employees.csv');
+
+/*{const employees = {name: 'me', list: getCSV('Employees.csv')}
+  //alert(employees.list)
+};*/
