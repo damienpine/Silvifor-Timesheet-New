@@ -2,8 +2,7 @@
 
 window.onload =  function(){
 
-
-       
+        
        createTable();
        
        createBlockTable();
@@ -20,14 +19,8 @@ window.onload =  function(){
        gettoday();
        dPicker();
        getotherdata();
+              
        
-       fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
-.then(response => response.json())
-.then(commits => alert(commits[0].author.login));
-
-       //getCSV('https://github.com/damienpine/silvifor-timesheet/blob/main/Crew.csv');
-
-
        document.getElementById("checkHide").checked=false;
        hideThis();
        
@@ -4452,6 +4445,42 @@ localStorage.setItem('rkstore',Jrk);
     
   };
 
+//parse csv and create product list
+
+function openProdFile(event) {
+
+  var input = event.target;
+
+  var reader = new FileReader();
+  reader.onload = function(){
+    var text = reader.result;
+
+//var arrdata= Papa.parse(data).data
+
+var results = Papa.parse(text, {
+ header: true,
+ dynamicTyping: true,
+delimiter: "",// auto-detect
+newline: "",	// auto-detect
+
+
+});
+
+let prodObj= results.data;
+
+let Jprod= JSON.stringify(prodObj)
+
+localStorage.setItem('prodstore',Jprod);
+  
+   //document.getElementById("Nsearch").value="";
+   //addLeads();
+
+    console.log(reader.result.substring(0, 200));
+  };
+  reader.readAsText(input.files[0]);
+  
+};
+
 function hideThis(){
   let div = document.getElementById("divFiles");
   
@@ -4870,6 +4899,40 @@ var l= select.length
     }
 }
 
+/*function addProds(){
+  if(localStorage.getItem("prodstore") != null){
+    alert(localStorage.getItem("prodstore"))
+    var values = JSON.parse(localStorage.getItem("prodstore"))//.     Array.from(JSON.parse(localStorage.getItem("leadstore")));
+    let objKey= Object.keys(JSON.parse(localStorage.getItem("prodstore"))[0])
+  
+  
+  //alert(Object.keys(leadObj[0]))
+  
+  
+  //var el = document.createElement("option")
+  
+  //el.text = "";
+  
+  //el.value = "";
+  
+  //document.getElementById("Name").add(el);
+  
+    for (i = 0; i < values.length; i++) {
+      if(values[i].Name != null){
+        var str = String(values[i].Name).trim();
+        var opt = String(values[i].Name).trim();
+        var el = document.createElement("option")
+        el.text = opt;
+        el.value = opt;
+  
+       }
+  
+  
+  document.getElementById("Lead").add(el);
+      }
+    }
+  }
+*/
 //show remaining local storage
 function checkStorage(){
 
@@ -4952,7 +5015,7 @@ function openTab(evt, tabName) {
 
 function createOpsTable(){
 
-
+  
   var opstorage= JSON.parse(localStorage.getItem('opslist'));
   var opsobj=opstorage;
 
@@ -5024,6 +5087,7 @@ function createOpsTable(){
        if(key=='Name & Certificate'){
          
         let mylist=JSON.parse(localStorage.getItem('namestore'))
+        alert(localStorage.getItem('namestore'))
 
          let y=document.createElement("datalist");
          y.setAttribute('id','mycertlist');
@@ -5069,13 +5133,13 @@ function createOpsTable(){
                input.setAttribute('placeholder','add '+ key);
                input.setAttribute('type','text');
                input.setAttribute('class','full');
-               input.setAttribute('list','productlist');//need to make this list
+               input.setAttribute('list','prodlist');//need to make this list
              }else{
                if(key=='Adjuvant'){
                  input.setAttribute('placeholder','add '+ key);
                  input.setAttribute('type','text');
                  input.setAttribute('class','full');
-                 input.setAttribute('list','productlist');//need to make this list
+                 input.setAttribute('list','prodlist');//need to make this list
                }else{
                  input.setAttribute('placeholder','add '+ key);
                  input.setAttribute('class','full');
@@ -5177,6 +5241,19 @@ function createOpsTable(){
                   input.value = element[key];
                 }
                   input.setAttribute('type','datalist');
+                  alert(key)
+                  if(key=='Client'){
+                    input.setAttribute('list','myclientlist');
+                  }
+                  if(key=='Name_Certificate'){
+                    input.setAttribute('list','mycertlist');
+                  }
+                  if(key=='Product'||key=='Adjuvant'){
+                    input.setAttribute('list','prodlist');
+                  }
+                  if(key=='Pest_Controlled_Purpose'){
+                    input.setAttribute('list','pestlist');
+                  }
                   input.value = element[key];       
                 }
               }
@@ -5261,7 +5338,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsProduct'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','text');
-        input.setAttribute('list','productlist');
+        input.setAttribute('list','prodlist');
         input.value = document.getElementById('opsProduct').value;
         cell.appendChild(input);
 
@@ -5278,7 +5355,7 @@ function addOpsRow(event){
         input.setAttribute('id','opsAdjuvant'+i);
         input.setAttribute('class','full');
         input.setAttribute('type','text');
-        input.setAttribute('list','productlist');
+        input.setAttribute('list','prodlist');
         input.value = document.getElementById('opsProduct').value;
         cell.appendChild(input);
 
@@ -5428,7 +5505,7 @@ localStorage.setItem('opslist',JSON.stringify(myObjArr))
 //alert(localStorage.getItem('opslist'))
 }
 
-function loadJSON(file,callback) {
+/*function loadJSON(file,callback) {
   
   var xobj = new XMLHttpRequest();
       xobj.overrideMimeType("application/json");
