@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="geo.min.js"></script>
+</head>
+<style>
+  html,body,#map{
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+</style>
+<script>
+  var map = geo.map({
+  node: "#map"
+});
+map.createLayer('osm');
+</script>
+<body>
+  <div id="map"></div>
+</body>
+</html>

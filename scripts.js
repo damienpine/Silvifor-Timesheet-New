@@ -1,23 +1,38 @@
 //on load functions
 
 window.onload =  function(){
-
-        
+  //get lead file
+  init('Leads.csv',"leadstore")
+  //get name file
+  init('Employees.csv',"namestore")
+  //get client file
+  init('Clients.csv',"clientstore")
+  //get task file
+  init('Tasks.csv',"taskstore")
+  //get RK file
+  init('RequestKeys.csv',"rkstore")
+    //get Block file
+  init('SurveyBlocks2021.csv',"blocklist")
+       dPicker();
+       addLeads();
+       addnames();  
+       addClients();
+       addtasks();
+       addRKs();
        createTable();
        
        createBlockTable();
 
        
        //addblocks();
-       addLeads();
-       addClients();
-       addtasks();
-       addnames();
-       addRKs();
+       
+
+       //addnames();
+       
        //getTasks();
  
        gettoday();
-       dPicker();
+       
        getotherdata();
               
        
@@ -94,6 +109,7 @@ createBlockTable();
     };
     reader.readAsText(input.files[0]);
   };
+
 
 function createBlockTable(){
 
@@ -4339,7 +4355,7 @@ localStorage.setItem('namestore',Jname);
 
 //parse csv and create lead list
 
-  function openLeadFile(event) {
+function openLeadFile(event) {
 
     var input = event.target;
 
@@ -4686,6 +4702,8 @@ var l= select.length
 //add leads
 
 function addLeads(){
+
+
 if(localStorage.getItem("leadstore") != null){
   var values = JSON.parse(localStorage.getItem("leadstore"))//.     Array.from(JSON.parse(localStorage.getItem("leadstore")));
   let objKey= Object.keys(JSON.parse(localStorage.getItem("leadstore"))[0])
@@ -5015,9 +5033,12 @@ function openTab(evt, tabName) {
 
 function createOpsTable(){
 
-  
-  var opstorage= JSON.parse(localStorage.getItem('opslist'));
-  var opsobj=opstorage;
+
+
+
+
+  let opstorage= JSON.parse(localStorage.getItem('opslist'));
+  let opsobj=opstorage;
 
 
   
@@ -5504,6 +5525,42 @@ var myObjArr=[];
 localStorage.setItem('opslist',JSON.stringify(myObjArr))
 //alert(localStorage.getItem('opslist'))
 }
+
+//get file
+function loadJSON(file,callback) {   
+
+  let xobj = new XMLHttpRequest();
+      xobj.overrideMimeType("application/csv");
+  xobj.open('GET', file, true); // Replace 'my_data' with the path to your file
+
+  xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+          // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+          callback(xobj.responseText);
+
+        }
+
+  };
+  xobj.send(null);  
+
+}
+
+function init(file,myList) {
+loadJSON(file,function(response) {
+// Parse JSON string into object
+  var myObj= Papa.parse(response,
+    {header: true,
+     dynamicTyping: true,
+     delimiter: "",
+     newline: "",
+     });
+
+localStorage.setItem(myList,JSON.stringify(myObj.data));
+
+});
+
+}
+//end get file
 
 /*function loadJSON(file,callback) {
   
