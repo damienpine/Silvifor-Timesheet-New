@@ -1,4 +1,3 @@
-Executing:
 CREATE SCHEMA `silvifor` ;
 
 
@@ -25,6 +24,7 @@ CREATE TABLE `silvifor`.`requestkeys` (
 
 CREATE TABLE `silvifor`.`surveyblocks` (
   `idSurveyBlocks` INT NOT NULL,
+  `Client` VARCHAR(45) NULL,
   `BlockName` VARCHAR(45) NULL,
   `BlockHa` DECIMAL NULL,
   `Enabled` TINYINT NULL,
@@ -36,6 +36,28 @@ CREATE TABLE `silvifor`.`tasks` (
   `idtasks` INT NOT NULL,
   `TaskName` VARCHAR(100) NULL,
   PRIMARY KEY (`idtasks`));
+
+  CREATE TABLE `silvifor`.`opsrecords` (
+  `idOpsRecords` INT NOT NULL AUTO_INCREMENT,
+  `Date` Date,
+  `Client` VARCHAR(45) NULL,
+  `NameCertificate` VARCHAR 100,
+  `Location` VARCHAR(45) NULL,
+  `PestControlled` VARCHAR(100) NULL,
+  `Product` VARCHAR(45) NULL,
+  `Litres` DECIMAL NULL,
+  `Adjuvant` VARCHAR(45) NULL,
+  `Alitres` DECIMAL NULL,
+  `Area` DECIMAL NULL,
+  `Rate` DECIMAL NULL,
+  `Method` VARCHAR(100) NULL,
+  `WindSpeedAM` DECIMAL NULL,
+  `WindDirAM` VARCHAR(45) NULL,
+  `HumidityAM` DECIMAL NULL,
+  `WindSpeedPM` DECIMAL NULL,
+  `WindDirPM` VARCHAR(45) NULL,
+  `HumidityPM` DECIMAL NULL,
+  PRIMARY KEY (`idOpsRecords`));
 
 ALTER TABLE `silvifor`.`clients` 
 CHANGE COLUMN `idClients` `idClients` INT NOT NULL AUTO_INCREMENT ;

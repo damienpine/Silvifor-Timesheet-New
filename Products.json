@@ -1,0 +1,31 @@
+[{ "Product":"Garlon RTU",
+     "Active_Ingredient": "Triclopyr",
+     "PCP#":29334
+   },
+   { "Product":"Garlon XRT",
+     "Active_Ingredient": "Triclopyr",
+     "PCP#":28945
+   },
+   { "Product":"Gateway",
+     "PCP#": 31470
+   },
+   { "Product":"Katana",
+     "Active_Ingredient": "Flazasulfuron",
+     "PCP#": 31470
+   },
+   { "Product":"Sylgard 309",
+     "PCP#": 23078
+   },
+   { "Product":"Vantage XRT",
+     "Active_Ingredient": "Glyphosate",
+     "PCP#":29994
+   },
+   { "Product":"VisonMax",
+    "Active_Ingredient": "Glyphosate",
+    "PCP#":27736
+   },
+   { "Product":"VP480",
+    "Active_Ingredient": "Glyphosate",
+    "PCP#":28840
+   }
+]
