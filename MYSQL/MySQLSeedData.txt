@@ -25,6 +25,7 @@ CREATE TABLE `silvifor`.`requestkeys` (
 CREATE TABLE `silvifor`.`surveyblocks` (
   `idSurveyBlocks` INT NOT NULL,
   `Client` VARCHAR(45) NULL,
+  `TaskName` VARCHAR(100) NULL,
   `BlockName` VARCHAR(45) NULL,
   `BlockHa` DECIMAL NULL,
   `Enabled` TINYINT NULL,
@@ -38,10 +39,10 @@ CREATE TABLE `silvifor`.`tasks` (
   PRIMARY KEY (`idtasks`));
 
   CREATE TABLE `silvifor`.`opsrecords` (
-  `idOpsRecords` INT NOT NULL AUTO_INCREMENT,
+  `idOpsRecords` INT NOT NULL,
   `Date` Date,
   `Client` VARCHAR(45) NULL,
-  `NameCertificate` VARCHAR 100,
+  `NameCertificate` VARCHAR(100) NULL,
   `Location` VARCHAR(45) NULL,
   `PestControlled` VARCHAR(100) NULL,
   `Product` VARCHAR(45) NULL,
@@ -70,6 +71,9 @@ CHANGE COLUMN `idRequestKeys` `idRequestKeys` INT NOT NULL AUTO_INCREMENT ;
 
 ALTER TABLE `silvifor`.`surveyblocks` 
 CHANGE COLUMN `idSurveyBlocks` `idSurveyBlocks` INT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `silvifor`.`opsrecords` 
+CHANGE COLUMN `idOpsRecords` `idOpsRecords` INT NOT NULL AUTO_INCREMENT ;
 
 ALTER TABLE `silvifor`.`tasks` 
 CHANGE COLUMN `idtasks` `idtasks` INT NOT NULL AUTO_INCREMENT ;
