@@ -38,7 +38,7 @@ CREATE TABLE `silvifor`.`tasks` (
   `TaskName` VARCHAR(100) NULL,
   PRIMARY KEY (`idtasks`));
 
-  CREATE TABLE `silvifor`.`opsrecords` (
+CREATE TABLE `silvifor`.`opsrecords` (
   `idOpsRecords` INT NOT NULL,
   `Date` Date,
   `Client` VARCHAR(45) NULL,
@@ -59,6 +59,37 @@ CREATE TABLE `silvifor`.`tasks` (
   `WindDirPM` VARCHAR(45) NULL,
   `HumidityPM` DECIMAL NULL,
   PRIMARY KEY (`idOpsRecords`));
+
+  CREATE TABLE `silvifor`.`timesheet` (
+  `idTimesheet` INT NOT NULL AUTO_INCREMENT,
+  `Date` Date,
+  `Client` VARCHAR(45) NULL,
+  `BlockName` VARCHAR(45) NULL,
+  `BlockHa` DECIMAL NULL,
+  `TaskName` VARCHAR(100) NULL,
+  `Name` VARCHAR(100) NULL,
+  `Hours` DECIMAL NULL,
+  `OT1` DECIMAL NULL,
+  `OT2` DECIMAL NULL,
+  `Ha` DECIMAL NULL,
+  `ProRate` DECIMAL NULL,
+  `AdjHa` DECIMAL NULL,
+  `HaRate` DECIMAL NULL,
+  `Species` VARCHAR(45) NULL,
+  `Trees` DECIMAL NULL,
+  `Fert` DECIMAL NULL,
+  `Cones` DECIMAL NULL,
+  `$Hr` DECIMAL NULL,
+  `$Unit` DECIMAL NULL,
+  `CrewLead` VARCHAR(100) NULL,
+  `Trucks` INT NULL,
+  `DailyKm` DECIMAL NULL,
+  `RemHa` DECIMAL NULL,
+  `Comments` VARCHAR(1000) NULL,
+  PRIMARY KEY (`idTimesheet`));
+  
+INSERT INTO `silvifor`.`timesheet`(`idTimesheet`,`Date`,`Client`,`BlockName`,`BlockHa`,`TaskName`,`Name`,`Hours`,`OT1`,`OT2`,`Ha`,`ProRate`,`AdjHa`,`HaRate`,`Species`,`Trees`,`Fert`,`Cones`,`$Hr`,`$Unit`,`CrewLead`,`Trucks`,`DailyKm`,`RemHa`,`Comments`) 
+VALUES ('0','2021-09-17','BCTS','A100','40.0','Silviculture Surveys - Stocking Plot','Damien Pine','8.0',null,null,'10.5',null,null,null,null,null,null,null,null,null,'Damien Pine','1','250.0','0','test');
 
 ALTER TABLE `silvifor`.`clients` 
 CHANGE COLUMN `idClients` `idClients` INT NOT NULL AUTO_INCREMENT ;
@@ -209,6 +240,8 @@ INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Primary Pla
 INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Quality Control');
 INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Roadside Plant');
 INSERT INTO `silvifor`.`tasks` (`TaskName`) VALUES ('Tree Planting - Supervision');
+
+
 
 
 
